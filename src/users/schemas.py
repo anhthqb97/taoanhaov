@@ -135,6 +135,18 @@ class UserListResponse(BaseModel):
     page: int = Field(..., description="Current page number")
     page_size: int = Field(..., description="Number of items per page")
     total_pages: int = Field(..., description="Total number of pages")
+    
+    class Config:
+        """Pydantic config"""
+        json_schema_extra = {
+            "example": {
+                "users": [],
+                "total_count": 0,
+                "page": 1,
+                "page_size": 10,
+                "total_pages": 0
+            }
+        }
 
 
 class UserQueryParams(BaseModel):
@@ -307,4 +319,40 @@ class UserSessionInfo(BaseModel):
         from_attributes = True
         json_encoders = {
             datetime: lambda v: v.isoformat()
+        }
+
+
+class UserFilter(BaseModel):
+    """User filtering model"""
+    username: Optional[str] = Field(None, description="Filter by username (partial match)")
+    email: Optional[str] = Field(None, description="Filter by email (partial match)")
+    role: Optional[UserRole] = Field(None, description="Filter by user role")
+    is_active: Optional[bool] = Field(None, description="Filter by active status")
+    is_verified: Optional[bool] = Field(None, description="Filter by verification status")
+    created_after: Optional[datetime] = Field(None, description="Filter by creation date (after)")
+    created_before: Optional[datetime] = Field(None, description="Filter by creation date (before)")
+    
+    class Config:
+        """Pydantic config"""
+        json_schema_extra = {
+            "example": {
+                "username": "john",
+                "role": "user",
+                "is_active": True
+            }
+        }
+
+
+class UserSort(BaseModel):
+    """User sorting model"""
+    field: str = Field(..., description="Sort field (id, username, email, created_at, last_login_at)")
+    desc: bool = Field(default=False, description="Sort in descending order")
+    
+    class Config:
+        """Pydantic config"""
+        json_schema_extra = {
+            "example": {
+                "field": "created_at",
+                "desc": True
+            }
         }

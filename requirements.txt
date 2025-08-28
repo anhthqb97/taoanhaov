@@ -1,0 +1,18 @@
+# 🐍 Python Dependencies cho Liên Quân Mobile Automation
+
+# Core dependencies
+subprocess32>=3.5.4; python_version<"3.2"  # Cho Python cũ
+# Không cần package đặc biệt - chỉ dùng thư viện chuẩn Python
+
+# Các thư viện chuẩn được sử dụng:
+# - os: Environment variables và file operations
+# - subprocess: Chạy ADB commands
+# - time: Delays và timing
+# - pathlib: Path handling (Python 3.4+)
+
+# Yêu cầu hệ thống:
+# - Python 3.7+ (khuyến nghị Python 3.9+)
+# - ADB (Android Debug Bridge) - cài với Android SDK
+# - Android Emulator - cài với Android Studio
+
+# Lưu ý: Không cần pip install - chỉ cần cài Android Studio và SDK

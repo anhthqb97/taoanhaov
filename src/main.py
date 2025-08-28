@@ -20,7 +20,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from src.database import init_db, close_db
 # from automation.router import router as automation_router
 from src.auth.router import router as auth_router
-# from users.router import router as users_router
+from src.users.router import router as users_router
 # from emulator.router import router as emulator_router
 
 # Configure logging
@@ -252,7 +252,7 @@ async def test_endpoint() -> Dict[str, Any]:
 
 # Include routers
 app.include_router(auth_router, prefix="/api/v1")
-# app.include_router(users_router, prefix="/api/v1")
+app.include_router(users_router, prefix="/api/v1")
 # app.include_router(automation_router, prefix="/api/v1")
 # app.include_router(emulator_router, prefix="/api/v1")
 

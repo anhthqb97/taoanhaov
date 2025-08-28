@@ -30,6 +30,7 @@ class UserRegister(BaseModel):
     confirm_password: str = Field(..., description="Password confirmation")
     full_name: str = Field(..., min_length=2, max_length=100, description="Full name (2-100 characters)")
     phone: Optional[str] = Field(None, max_length=20, description="Phone number (optional)")
+    role: Optional[str] = Field(default="user", description="User role (default: user)")
     
     @validator('confirm_password')
     def passwords_match(cls, v, values):

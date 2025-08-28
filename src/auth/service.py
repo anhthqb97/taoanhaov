@@ -154,7 +154,7 @@ class AuthService:
                 phone=user_data.phone,
                 is_active=True,
                 is_verified=False,
-                role="user"
+                role=user_data.role
             )
             
             self.db_session.add(user)
